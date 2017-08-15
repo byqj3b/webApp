@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app" ng-controller="appController">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+<!--导航-->
+<header></header>
 
+<!--底部tab导航-->
+<tabfoot></tabfoot>
 <script>
-
+    //自动获取屏幕分辨率
+    var foneSzie = window.screen.width / 10 + 'px';
+    document.getElementsByTagName('HTML')[0].style.fontSize = foneSzie;
 </script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
