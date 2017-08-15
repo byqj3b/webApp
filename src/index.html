@@ -10,7 +10,13 @@
 <body>
 <!--导航-->
 <header></header>
-
+<!--设置路由-->
+<div class="content">
+    <div class="home" ui-view="home" ng-show="index == 0"></div>
+    <div class="author" ui-view="author" ng-show="index == 1"></div>
+    <div class="content" ui-view="content" ng-show="index == 2"></div>
+    <div class="my" ui-view="my" ng-show="index == 3"></div>
+</div>
 <!--底部tab导航-->
 <tabfoot></tabfoot>
 <script>

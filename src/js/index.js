@@ -1,15 +1,17 @@
 ;(function (angular) {
 
-    var app = angular.module("app", []);
+    var app = angular.module("app", ['ui.router']);
     app.controller("appController", ["$scope", function ($scope) {
-        $scope.title = "每日一刻";
+        $scope.index = 0;
         //父级接收广播
-        $scope.titleArr = ['首页', '作者', '栏目', '我'];
-        $scope.title='首页';
+        $scope.titleArr = ['每日一刻', '作者', '栏目', '我'];
+        $scope.title = '每日一刻';
         $scope.$on('tab_notifice', function (e, regs) {
             var index = regs.id;
             //父级发送广播给儿子
-            $scope.$broadcast('app_notifice',{title:$scope.titleArr[index]})
+            // $scope.$broadcast('app_notifice',{title:$scope.titleArr[index]});
+            $scope.index = index;
+            $scope.title = $scope.titleArr[index];
         });
     }]);
     //顶部导航
@@ -19,9 +21,9 @@
             templateUrl: '../views/header_tpl.html',
             controller: ['$scope', function ($scope) {
                 //接收父级广播
-                $scope.$on('app_notifice',function (e, regs) {
-                    $scope.title=regs.title;
-                })
+                /*$scope.$on('app_notifice',function (e, regs) {
+                 $scope.title=regs.title;
+                 })*/
 
             }]
         }
@@ -38,5 +40,25 @@
                 }
             }]
         }
-    })
+    });
+    app.config(['$stateProvider','$urlRouterProvider',function ($stateProvider, $urlRouterProvider) {
+            $stateProvider.state('/home',{
+                url:'/home',
+                views:{
+                    home:{
+                        template:'<h2>首页</h2>'
+                    },
+                    author:{
+                        template:'<h2>作者</h2>'
+                    },
+                    content:{
+                        template:'<h2>栏目</h2>'
+                    },
+                    my:{
+                        template:'<h2>我</h2>'
+                    }
+                }
+            });
+            $urlRouterProvider.otherwise('/home');
+    }]);
 })(angular);
