@@ -46,7 +46,8 @@
                 url:'/home',
                 views:{
                     home:{
-                        template:'<h2>首页</h2>'
+                        templateUrl:'../views/home_tpl.html',
+                        controller:'HomeController'
                     },
                     author:{
                         template:'<h2>作者</h2>'
@@ -61,4 +62,7 @@
             });
             $urlRouterProvider.otherwise('/home');
     }]);
+    app.controller('HomeController',['$scope',function ($scope) {
+        $scope.HomeTitle='首页控制器'
+    }])
 })(angular);
